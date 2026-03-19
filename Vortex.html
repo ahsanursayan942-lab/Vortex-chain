@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>VORTEX.CHAIN | TITAN_SOVEREIGN_v11_FIXED</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@300;800&display=swap');
+
+        :root {
+            --cyan: #00f2ff;
+            --gold: #ffcc00;
+            --bg: #000000;
+            --deep-blue: #050a15;
+            --border: rgba(0, 242, 255, 0.4);
+            --glass: rgba(5, 5, 10, 0.85);
+            --transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* --- 1. THE DEEP 3D SINGULARITY ENGINE --- */
+        @keyframes vortexRotate {
+            0% { transform: rotateX(70deg) rotateY(0deg) rotateZ(0deg) translateZ(-50px); }
+            50% { transform: rotateX(70deg) rotateY(180deg) rotateZ(180deg) translateZ(100px); }
+            100% { transform: rotateX(70deg) rotateY(360deg) rotateZ(360deg) translateZ(-50px); }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .engine-bg {
+            position: fixed; inset: 0; z-index: -2; overflow: hidden;
+            background: radial-gradient(circle at center, var(--deep-blue) 0%, #000 80%);
+            perspective: 2000px;
+        }
+
+        .vortex-core {
+            position: absolute; top: 50%; left: 50%;
+            width: 100vmax; height: 100vmax; margin: -50vmax;
+            transform-style: preserve-3d;
+            animation: vortexRotate 25s infinite linear;
+        }
+
+        .vortex-ring {
+            position: absolute; inset: 0;
+            border: 6px solid var(--cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 60px var(--cyan), inset 0 0 60px var(--cyan);
+            mask-image: radial-gradient(circle, black 50%, transparent 100%);
+        }
+
+        .vortex-ring:nth-child(2) { 
+            transform: scale(0.6) translateZ(-200px); 
+            border-color: var(--gold); 
+            animation-duration: 18s;
+            box-shadow: 0 0 70px var(--gold), inset 0 0 50px var(--gold);
+        }
+
+        .vortex-ring:nth-child(3) { 
+            transform: scale(1.4) translateZ(200px); 
+            border-width: 2px;
+            opacity: 0.15;
+        }
+
+        /* --- 2. GLOBAL ARCHITECTURE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: #fff; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 25px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(25px); border-bottom: 1px solid rgba(0,242,255,0.2); z-index: 1000;
+        }
+
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 0.9rem; letter-spacing: 5px; color: var(--cyan); text-shadow: 0 0 15px var(--cyan); }
+
+        /* --- 3. HERO (PHOTO 1) --- */
+        header {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 20px; position: relative;
+        }
+
+        .hero-img {
+            position: absolute; inset: 0; z-index: -1;
+            background: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2000') center/cover;
+            opacity: 0.35; filter: grayscale(1) brightness(0.4);
+            mask-image: radial-gradient(circle, black, transparent 90%);
+        }
+
+        h1 { font-size: clamp(3rem, 15vw, 10rem); font-family: 'Syncopate', sans-serif; line-height: 0.85; letter-spacing: -6px; margin-bottom: 20px; }
+        .text-glow { color: var(--cyan); text-shadow: 0 0 40px var(--cyan); }
+
+        /* --- 4. BENTO MATRIX (PHOTOS 2-10) --- */
+        .bento-matrix {
+            display: grid; grid-template-columns: repeat(12, 1fr);
+            gap: 25px; padding: 50px 5% 150px; max-width: 1800px; margin: 0 auto;
+        }
+
+        .cell {
+            grid-column: span 12; background: var(--glass); border: 1px solid rgba(0,242,255,0.2);
+            border-radius: 44px; min-height: 400px; position: relative; overflow: hidden;
+            padding: 40px; display: flex; flex-direction: column; justify-content: flex-end;
+            transition: var(--transition);
+        }
+
+        .cell:hover { border-color: var(--cyan); transform: translateY(-12px) scale(1.01); box-shadow: 0 25px 60px rgba(0, 242, 255, 0.15); }
+
+        /* FIXED PHOTO LOGIC: All cells use this div now */
+        .cell-img {
+            position: absolute; inset: 0; z-index: -1; background-size: cover;
+            background-position: center; opacity: 0.25; filter: grayscale(1) brightness(0.6); transition: 0.8s;
+        }
+
+        .cell:hover .cell-img { opacity: 0.7; filter: grayscale(0) brightness(0.8); transform: scale(1.1); }
+
+        /* Holographic Scanline Effect */
+        .cell::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(0, 242, 255, 0.2); animation: scanline 4s linear infinite; z-index: 1;
+        }
+
+        @media (min-width: 1024px) {
+            .w-8 { grid-column: span 8; }
+            .w-4 { grid-column: span 4; }
+            .w-6 { grid-column: span 6; }
+        }
+
+        /* --- 5. MOBILE FITTING --- */
+        .dock {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 450px; background: rgba(5,5,10,0.95);
+            backdrop-filter: blur(35px); border: 1px solid var(--border);
+            border-radius: 100px; height: 75px; display: flex;
+            justify-content: space-around; align-items: center; z-index: 2000;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+
+        .dock-item { font-family: 'JetBrains Mono'; font-size: 10px; color: #666; cursor: pointer; text-align: center; }
+        .dock-item:hover, .active { color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 4.5rem; letter-spacing: -3px; }
+            .cell { min-height: 350px; border-radius: 30px; padding: 30px; }
+            .dock { height: 65px; bottom: 20px; }
+        }
+
+        .cta-btn {
+            background: var(--cyan); color: #000; padding: 22px 50px;
+            border-radius: 100px; text-decoration: none; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 4px; transition: 0.4s;
+            box-shadow: 0 0 30px var(--cyan);
+        }
+        .cta-btn:hover { background: #fff; transform: scale(1.1); box-shadow: 0 0 50px var(--cyan); }
+    </style>
+</head>
+<body>
+
+    <div class="engine-bg">
+        <div class="vortex-core">
+            <div class="vortex-ring"></div>
+            <div class="vortex-ring"></div>
+            <div class="vortex-ring"></div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo">VORTEX.CHAIN</div>
+        <div style="font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--gold);">SYS_NODES: 14,212 // OPERATIONAL</div>
+    </nav>
+
+    <main>
+        <!-- PHOTO 1: HERO -->
+        <header>
+            <div class="hero-img"></div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--cyan); letter-spacing: 5px; margin-bottom: 25px;">[ SOVEREIGN_PROTOCOL_v11.4 ]</div>
+            <h1>TITAN<br><span class="text-glow">VORTEX</span></h1>
+            <p style="max-width: 650px; opacity: 0.6; line-height: 1.7; font-size: 1.2rem; margin-bottom: 50px;">
+                Advanced Layer-1 fractal architecture designed for private debt orchestration and high-frequency automated liquidity.
+            </p>
+            <a href="#explore" class="cta-btn">Initialize Core</a>
+        </header>
+
+        <div class="bento-matrix" id="explore">
+            
+            <!-- PHOTO 2: GLOBAL MESH -->
+            <div class="cell w-8">
+                <div class="cell-img" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000')"></div>
+                <h2 style="font-family: 'Syncopate'; font-size: 2rem;">Fractal Mesh</h2>
+                <p style="opacity: 0.7; margin-top: 10px;">14,000+ nodes synchronized across 120 global jurisdictions.</p>
+            </div>
+
+            <!-- PHOTO 3: SECURITY -->
+            <div class="cell w-4">
+                <div class="cell-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000')"></div>
+                <h2 style="font-family: 'Syncopate'; font-size: 1.2rem; color: var(--gold);">Quantum Shield</h2>
+                <p style="opacity: 0.7; margin-top: 10px;">EAL7+ Hardened Decentralized Semiconductors.</p>
+            </div>
+
+            <!-- PHOTO 4: FINANCE -->
+            <div class="cell w-4">
+                <div class="cell-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000')"></div>
+                <div style="font-size: 4rem; font-weight: 800; color: var(--cyan);">18.4%</div>
+                <p style="opacity: 0.7;">Institutional Targeted APYavg.</p>
+            </div>
+
+            <!-- PHOTO 5: CORE -->
+            <div class="cell w-8">
+                <div class="cell-img" style="background-image: url('https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2000')"></div>
+                <h2 style="font-family: 'Syncopate'; font-size: 2rem;">Liquidity Core</h2>
+                <p style="opacity: 0.7; margin-top: 10px;">Self-optimizing fractal credit lines via automated market-making.</p>
+            </div>
+
+            <!-- PHOTO 6: INFRASTRUCTURE (FIXED BUG) -->
+            <div class="cell w-6">
+                <div class="cell-img" style="background-image: url('infrastructure.jpg')"></div>
+                <h2 style="font-family: 'Syncopate'; font-size: 1.2rem;">Infrastructure</h2>
+                <p style="opacity: 0.7;">Zero-bottleneck data throughput facilities.</p>
+            </div>
+
+            <!-- PHOTO 7: BRIDGE -->
+            <div class="cell w-6">
+                <div class="cell-img" style="background-image: url('https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1000')"></div>
+                <h2 style="font-family: 'Syncopate'; font-size: 1.2rem;">Sovereign Bridge</h2>
+                <p style="opacity: 0.7;">Atomic settlements across multi-sovereign chains.</p>
+            </div>
+
+            <!-- PHOTO 8: FUTURE AI -->
+            <div class="cell w-4">
+                <div class="cell-img" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000')"></div>
+                <h3>AI Oracle</h3>
+                <p style="opacity: 0.7;">Predictive institutional liquidity math.</p>
+            </div>
+
+            <!-- PHOTO 9: NODES -->
+            <div class="cell w-8">
+                <div class="cell-img" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000')"></div>
+                <h2 style="font-family: 'Syncopate'; font-size: 1.5rem;">Validator Matrix</h2>
+                <p style="opacity: 0.7;">High-frequency ASIC Node verification engine.</p>
+            </div>
+
+            <!-- PHOTO 10: OPTICS -->
+            <div class="cell w-12">
+                <div class="cell-img" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2000')"></div>
+                <h2 style="font-family: 'Syncopate'; font-size: clamp(1.5rem, 5vw, 3.5rem);">2.4ms Finality Speed</h2>
+                <p style="opacity: 0.7;">Optical-grade settlement layers for high-frequency institutional volume.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MOBILE DOCK -->
+    <div class="dock">
+        <div class="dock-item">CORE</div>
+        <div class="dock-item">NETWORK</div>
+        <div class="dock-item active">VORTEX</div>
+        <div class="dock-item">SYSTEM</div>
+    </div>
+
+</body>
+</html>
